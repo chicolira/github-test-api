@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-3 col-lg-3">
+      <div
+        class="card clickable"
+        (click)="openLink(githubUser.html_url)"
+        *ngIf="githubUser"
+      >
+        <img
+          class="card-img-top gibhub-avatar-img"
+          [src]="githubUser.avatar_url"
+          alt="Github User Avatar"
+        />
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">{{ githubUser.name }}</h5>
+          <p class="card-text">
+            {{ githubUser.login }}
+          </p>
+        </div>
+        <div class="card-body">
+          <div  *ngIf="githubUser.company">
+            <fa-icon [icon]="faUserFriends"></fa-icon>
+            <div class="inline-text">
+              <p>{{ githubUser.company }}</p>
+            </div>
+          </div>
+          <div  *ngIf="githubUser.location">
+            <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+            <div class="inline-text">
+              <p>{{ githubUser.location }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-9 col-lg-9">
+      <mat-tab-group *ngIf="githubUserLogin" dynamicHeight >
+        <mat-tab label="Repositories">
+          <app-github-user-repos
+            [githubUserLogin]="githubUserLogin"
+          ></app-github-user-repos>
+        </mat-tab>
+        <mat-tab label="Starred">
+          <app-github-user-starred
+            [githubUserLogin]="githubUserLogin"
+          ></app-github-user-starred>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

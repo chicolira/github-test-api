@@ -1,0 +1,18 @@
+<div class="center-spinner" *ngIf="isWaitingRequest">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="row tab-row" *ngIf="!isWaitingRequest">
+  <div
+    class="card col-sm-12 col-md-12 col-lg-12"
+    *ngFor="let repo of repositoryList"
+  >
+    <div class="card-body">
+      <h5 class="card-title clickable" (click)="openLink(repo.html_url)">
+        {{ repo.full_name }}
+      </h5>
+      <p class="card-text">
+        {{ repo.description }}
+      </p>
+    </div>
+  </div>
+</div>
